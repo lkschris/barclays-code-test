@@ -1,7 +1,9 @@
 package com.eaglebank.app.controller;
 
+import com.eaglebank.app.model.dto.CreateBankAccountRequest;
 import com.eaglebank.app.model.dto.CreateTransactionRequest;
 import com.eaglebank.app.model.dto.ListTransactionsResponse;
+import com.eaglebank.app.model.dto.TransactionResponse;
 import com.eaglebank.app.service.TransactionService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +18,8 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @GetMapping
-    public ResponseEntity<ListTransactionsResponse> listTransactions(@PathVariable String accountNumber) {
-        return ResponseEntity.ok(transactionService.listTransactions(accountNumber));
+    @PostMapping
+    public TransactionResponse createTransactions(@PathVariable String accountNumber, @Valid @RequestBody CreateTransactionRequest req) {
+        return transactionService.createTransaction(accountNumber, req);
     }
 }

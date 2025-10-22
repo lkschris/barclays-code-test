@@ -18,14 +18,8 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @PostMapping
-    public ResponseEntity<BankAccountResponse> createAccount(@Valid @RequestBody CreateBankAccountRequest req) {
-        BankAccountResponse resp = accountService.createAccount(req);
-        return ResponseEntity.status(201).body(resp);
-    }
-
-    @GetMapping
-    public ResponseEntity<ListBankAccountsResponse> listAccounts() {
-        return ResponseEntity.ok(accountService.listAccounts());
+    @PostMapping("/{accountId}")
+    public BankAccountResponse createAccount(@Valid @RequestBody CreateBankAccountRequest req) {
+        return accountService.createAccount(req);
     }
 }

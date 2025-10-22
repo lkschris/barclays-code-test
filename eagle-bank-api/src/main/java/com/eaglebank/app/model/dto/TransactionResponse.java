@@ -7,8 +7,6 @@ public record TransactionResponse(
         double amount,
         String currency,
         String type,
-        String reference,
-        String userId,
-        OffsetDateTime createdTimestamp
+        String userId
 ) {
 }

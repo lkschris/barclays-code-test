@@ -9,6 +9,7 @@ import com.eaglebank.app.model.dto.UpdateUserRequest;
 import com.eaglebank.app.model.dto.UserResponse;
 import com.eaglebank.app.repository.AccountRepository;
 import com.eaglebank.app.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class UserService {
     @Autowired
     AccountRepository accountRepository;
 
+    @Transactional
     public UserResponse createUser(CreateUserRequest req) {
         UUID id = UUID.fromString("usr-" + UUID.randomUUID());
         OffsetDateTime now = OffsetDateTime.now();
@@ -40,6 +42,7 @@ public class UserService {
         return new UserResponse(u.getId(), u.getName(), u.getAddress(), u.getName(), u.getEmail());
     }
 
+    @Transactional
     public UserResponse updateUser(UUID userId, UpdateUserRequest req) {
         User u = userRepository.findById(userId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));

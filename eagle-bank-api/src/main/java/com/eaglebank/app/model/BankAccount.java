@@ -10,7 +10,7 @@ public class BankAccount {
     private double balance;
     private final String currency;
 
-    public BankAccount(String accountNumber, String name, String accountType, double balance, String currency, OffsetDateTime createdTimestamp, OffsetDateTime updatedTimestamp) {
+    public BankAccount(String accountNumber, String name, String accountType, double balance, String currency) {
         this.accountNumber = accountNumber;
         this.name = name;
         this.accountType = accountType;

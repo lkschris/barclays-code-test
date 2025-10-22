@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.eaglebank.app.model.dto.*;
 
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -19,23 +20,24 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody CreateUserRequest req) {
-        return ResponseEntity.status(201).body(userService.createUser(req));
+    public UserResponse createUser(@Valid @RequestBody CreateUserRequest req) {
+        return userService.createUser(req);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserResponse> getUser(@PathVariable UUID userId) {
-        return ResponseEntity.ok(userService.getUser(userId));
+    public UserResponse getUser(@PathVariable UUID userId) {
+        return userService.getUser(userId);
     }
 
     @PutMapping("/{userId}")
-    public ResponseEntity<UserResponse> updateUser(@PathVariable UUID userId, @Valid @RequestBody UpdateUserRequest req) {
-        return ResponseEntity.ok(userService.updateUser(userId, req));
+    public UserResponse updateUser(@PathVariable UUID userId, @Valid @RequestBody UpdateUserRequest req) {
+        return userService.updateUser(userId, req);
     }
 
     @DeleteMapping("/{userId}")
-    public ResponseEntity<Void> deleteUser(@PathVariable UUID userId, @Valid @RequestBody DeleteUserRequest req) {
+    public ResponseEntity<Map<String, String>> deleteUser(@PathVariable UUID userId, @Valid @RequestBody DeleteUserRequest req) {
         userService.deleteUser(userId, req.name());
-        return ResponseEntity.noContent().build();
+        Map<String, String> response = Map.of("message", "User has been successfully deleted");
+        return ResponseEntity.ok(response);
     }
 }

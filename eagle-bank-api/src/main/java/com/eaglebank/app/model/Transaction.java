@@ -9,7 +9,7 @@ public class Transaction {
     private final String type;
     private final String userId;
 
-    public Transaction(String id, double amount, String currency, String type, String reference, String userId, OffsetDateTime createdTimestamp) {
+    public Transaction(String id, double amount, String currency, String type, String userId) {
         this.id = id;
         this.amount = amount;
         this.currency = currency;
