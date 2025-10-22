@@ -1,5 +1,8 @@
 package com.eaglebank.app.service;
 
+import com.eaglebank.app.exception.ConflictException;
+import com.eaglebank.app.exception.ForbiddenActionException;
+import com.eaglebank.app.exception.ResourceNotFoundException;
 import com.eaglebank.app.model.User;
 import com.eaglebank.app.model.dto.CreateUserRequest;
 import com.eaglebank.app.model.dto.UpdateUserRequest;

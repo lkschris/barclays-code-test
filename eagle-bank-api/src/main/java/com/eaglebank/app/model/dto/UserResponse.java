@@ -8,8 +8,6 @@ public record UserResponse(
         String name,
         String address,
         String phoneNumber,
-        String email,
-        OffsetDateTime createdTimestamp,
-        OffsetDateTime updatedTimestamp
+        String email
 ) {
 }
